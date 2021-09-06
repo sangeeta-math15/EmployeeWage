@@ -6,7 +6,15 @@ echo "welcome to employee wage attendance system"
 IS_PRESENT_full_time=1
 IS_PRESENT_part_time=2
 EMP_RATE_HR=20
-empCheck=$((RANDOM%2)) # 1 2
+
+MAX_WORKING_DAYS=20
+
+for (( day=1;day<=$MAX_WORKING_DAYS;day++ ))
+do
+
+#variable
+empCheck=$(( RANDOM%3 ))
+
 
 case $empCheck in
 
@@ -18,5 +26,6 @@ case $empCheck in
                 empHr=0;;
 esac
 
+salary=$(( empHr * EMP_RATE_HR ))
+done
 
-salary=$((empHr * EMP_RATE_HR ))
