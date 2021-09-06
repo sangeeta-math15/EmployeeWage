@@ -8,13 +8,13 @@ IS_PRESENT_part_time=2
 EMP_RATE_HR=20
 
 MAX_WORKING_DAYS=20
-
+totalWorkHr=0
+day=1
 for (( day=1;day<=$MAX_WORKING_DAYS;day++ ))
 do
 
 #variable
 empCheck=$(( RANDOM%3 ))
-
 
 case $empCheck in
 
@@ -25,7 +25,9 @@ case $empCheck in
         *)
                 empHr=0;;
 esac
-
-salary=$(( empHr * EMP_RATE_HR ))
+        totalWorkHr=$(( totalWorkHr + empHr ))
+        salary=$(( empHr * EMP_RATE_HR ))
 done
+
+
 
