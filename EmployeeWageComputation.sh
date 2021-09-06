@@ -10,9 +10,9 @@ EMP_RATE_HR=20
 MAX_WORKING_DAYS=20
 totalWorkHr=0
 MAX_WORK_HR=50
-day=1
+day=0
 
-declare -a dailyWage
+declare -A dailyWage
 function getWorkHr(){
         local empCheck=$1
         local empHr=0
@@ -34,15 +34,18 @@ do
         #variable
         empCheck=$(( RANDOM % 3 ))
         empHr=$( getWorkHr $empCheck )
-        (( day++ ))
-
+  
         totalWorkHr=$(( totalWorkHr + empHr ))
-        dailyWage[((day++))]=$(( empHr * EMP_RATE_HR ))
+	salary=$(( empHr * EMP_RATE_HR ))
+	((day++))  
+
+        dailyWage[((day_$day))]=$(( empHr * EMP_RATE_HR ))
 done
 
-totalSalary=$(( totalWorkHr * EMP_RATE_PER_HR ))
+totalSalary=$(( totalWorkHr * EMP_RATE_HR ))
 
 echo dailyWage:${dailyWage[@]}
+echo keys:${!dailyWage[*]}
 
 
 
