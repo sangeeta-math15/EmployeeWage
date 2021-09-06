@@ -12,6 +12,7 @@ totalWorkHr=0
 MAX_WORK_HR=50
 day=1
 
+declare -a dailyWage
 function getWorkHr(){
         local empCheck=$1
         local empHr=0
@@ -28,8 +29,6 @@ esac
 
 }
 
-
-
 while [ $day -le $MAX_WORKING_DAYS -a $totalWorkHr -lt $MAX_WORK_HR ]
 do
         #variable
@@ -38,9 +37,12 @@ do
         (( day++ ))
 
         totalWorkHr=$(( totalWorkHr + empHr ))
-        salary=$(( empHr * EMP_RATE_HR ))
+        dailyWage[((day++))]=$(( empHr * EMP_RATE_HR ))
 done
 
+totalSalary=$(( totalWorkHr * EMP_RATE_PER_HR ))
+
+echo dailyWage:${dailyWage[@]}
 
 
 
